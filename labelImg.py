@@ -898,16 +898,17 @@ class MainWindow(QMainWindow, WindowMixin):
                     annotation_file_path += XML_EXT
                 self.label_file.save_pascal_voc_format(annotation_file_path, shapes, self.file_path, self.image_data,
                                                        self.line_color.getRgb(), self.fill_color.getRgb())
-            elif self.label_file_format == LabelFileFormat.YOLO:
+                #######
                 if annotation_file_path[-4:].lower() != ".txt":
                     annotation_file_path += TXT_EXT
                 self.label_file.save_yolo_format(annotation_file_path, shapes, self.file_path, self.image_data, self.label_hist,
                                                  self.line_color.getRgb(), self.fill_color.getRgb())
-            elif self.label_file_format == LabelFileFormat.CREATE_ML:
+                
                 if annotation_file_path[-5:].lower() != ".json":
                     annotation_file_path += JSON_EXT
                 self.label_file.save_create_ml_format(annotation_file_path, shapes, self.file_path, self.image_data,
                                                       self.label_hist, self.line_color.getRgb(), self.fill_color.getRgb())
+                #########
             else:
                 self.label_file.save(annotation_file_path, shapes, self.file_path, self.image_data,
                                      self.line_color.getRgb(), self.fill_color.getRgb())
@@ -1189,9 +1190,9 @@ class MainWindow(QMainWindow, WindowMixin):
             """
             if os.path.isfile(xml_path):
                 self.load_pascal_xml_by_filename(xml_path)
-            elif os.path.isfile(txt_path):
+            ####elif os.path.isfile(txt_path):
                 self.load_yolo_txt_by_filename(txt_path)
-            elif os.path.isfile(json_path):
+            ####elif os.path.isfile(json_path):
                 self.load_create_ml_json_by_filename(json_path, file_path)
 
         else:
@@ -1201,9 +1202,9 @@ class MainWindow(QMainWindow, WindowMixin):
 
             if os.path.isfile(xml_path):
                 self.load_pascal_xml_by_filename(xml_path)
-            elif os.path.isfile(txt_path):
+            ####elif os.path.isfile(txt_path):
                 self.load_yolo_txt_by_filename(txt_path)
-            elif os.path.isfile(json_path):
+            #####elif os.path.isfile(json_path):
                 self.load_create_ml_json_by_filename(json_path, file_path)
             
 
@@ -1329,7 +1330,7 @@ class MainWindow(QMainWindow, WindowMixin):
                     filename = filename[0]
             self.load_pascal_xml_by_filename(filename)
 
-        elif self.label_file_format == LabelFileFormat.CREATE_ML:
+        ###elif self.label_file_format == LabelFileFormat.CREATE_ML:
             
             filters = "Open Annotation JSON file (%s)" % ' '.join(['*.json'])
             filename = ustr(QFileDialog.getOpenFileName(self, '%s - Choose a json file' % __appname__, path, filters))
